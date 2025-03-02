@@ -1,0 +1,114 @@
+h1 {
+    font-size: 34px;
+    color: #000000;
+}
+
+.slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+.slider-wrapper {
+    width: auto;
+    height: 100%;
+    padding: 40px;
+}
+
+.slider-wrapper .image-list {
+    display: grid;
+    gap: 12px;
+    overflow-x: auto;
+    grid-template-columns: repeat(6, 3fr);
+    max-width: 90vw;
+    padding-bottom: 25px;
+}
+
+.slider-wrapper .image-list .image-item {
+    position: relative;
+    width: 567px;
+    object-fit: cover;
+}
+
+.slider-wrapper .image-list .image-item img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.image-text {
+    position: absolute;
+    bottom: 60px;
+    left: 42px;
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight:bold;
+}
+.image-text2 {
+    position: absolute;
+    bottom: 160px;
+    left: 42px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0);
+    padding: 0px 0px;
+    font-size: 16px;
+    font-weight:bold;
+}
+
+.image-text3 {
+    position: absolute;
+    bottom: 110px;
+    left: 40px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0);
+    padding: 0px 0px;
+    font-size: 32px;
+}
+
+.imagesubtitle {
+    font-size: 25px;
+    color: #000000;
+
+}
+
+
+
+.body-table {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 50px;
+}
+
+.body-table table {
+    width: 50%;
+    border-collapse: collapse;
+}
+
+.body-table th,
+.body-table td {
+    padding: 12px;
+    /* Espaciado interno de las celdas */
+    text-align: left;
+    border: none;
+    /* Elimina los bordes de las celdas */
+}
+
+.body-table th {
+    background-color: white;
+    color: black;
+    font-size: 24px;
+    font-weight: 200;
+}
+
+.body-table td {
+    background-color: white;
+    color: #707072;
+    font-size: 16px;
+    font-weight: bold;
+}
