@@ -104,4 +104,11 @@ h2 {
     text-align: center;
     margin: 10px;
     padding-bottom: 20px;
-    font-family: "Bebas Neue", serif;}
+    font-family: "Bebas Neue", serif;
+}
+
+#offer {
+    margin-top: 10px;
+    width: 20px;
+    height: 20px;
+}
