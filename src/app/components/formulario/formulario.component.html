@@ -1,0 +1,47 @@
+<div class="form-container">
+    <form [formGroup]="productoForm" (ngSubmit)="onSubmit()">
+        <!-- Nº de referencia -->
+        <label for="reference">Nº de referencia:</label>
+        <input id="reference" formControlName="reference" />
+        <span *ngIf="productoForm.controls['reference'].invalid && productoForm.controls['reference'].touched"
+            class="error">
+            El nº de referencia es un campo obligatorio
+        </span>
+
+        <!-- Nombre del producto -->
+        <label for="name">Nombre del producto:</label>
+        <input id="name" formControlName="name" />
+        <span *ngIf="productoForm.controls['name'].valid" class="valid">✔️</span>
+
+        <!-- Precio -->
+        <label for="price">Precio:</label>
+        <input id="price" formControlName="price" type="text" />
+        <span *ngIf="productoForm.controls['price'].invalid && productoForm.controls['price'].touched" class="error">
+            Ingrese un precio válido (ej: 199.99)
+        </span>
+
+        <!-- Descripción -->
+        <label for="description">Descripción:</label>
+        <textarea id="description" formControlName="description"></textarea>
+        <span *ngIf="productoForm.controls['description'].valid" class="valid">✔️</span>
+
+        <!-- Tipo de Producto -->
+        <label for="type">Tipo de Producto:</label>
+        <select id="type" formControlName="type">
+            <option value="road">Zapatillas de running de carretera</option>
+            <option value="trail">Zapatillas de trail</option>
+        </select>
+
+        <!-- Producto de oferta -->
+        <label for="offer">Producto de oferta:</label>
+        <input id="offer" type="checkbox" formControlName="offer" />
+
+        <button type="submit" [disabled]="productoForm.invalid">Enviar</button>
+    </form>
+    <div class="form-labels">
+
+    </div>
+    <div class="form-inputs">
+
+    </div>
+</div>
