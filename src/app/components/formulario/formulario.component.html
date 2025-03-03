@@ -1,47 +1,138 @@
-<div class="form-container">
-    <form [formGroup]="productoForm" (ngSubmit)="onSubmit()">
-        <!-- Nº de referencia -->
-        <label for="reference">Nº de referencia:</label>
-        <input id="reference" formControlName="reference" />
-        <span *ngIf="productoForm.controls['reference'].invalid && productoForm.controls['reference'].touched"
-            class="error">
-            El nº de referencia es un campo obligatorio
-        </span>
-
-        <!-- Nombre del producto -->
-        <label for="name">Nombre del producto:</label>
-        <input id="name" formControlName="name" />
-        <span *ngIf="productoForm.controls['name'].valid" class="valid">✔️</span>
-
-        <!-- Precio -->
-        <label for="price">Precio:</label>
-        <input id="price" formControlName="price" type="text" />
-        <span *ngIf="productoForm.controls['price'].invalid && productoForm.controls['price'].touched" class="error">
-            Ingrese un precio válido (ej: 199.99)
-        </span>
-
-        <!-- Descripción -->
-        <label for="description">Descripción:</label>
-        <textarea id="description" formControlName="description"></textarea>
-        <span *ngIf="productoForm.controls['description'].valid" class="valid">✔️</span>
-
-        <!-- Tipo de Producto -->
-        <label for="type">Tipo de Producto:</label>
-        <select id="type" formControlName="type">
-            <option value="road">Zapatillas de running de carretera</option>
-            <option value="trail">Zapatillas de trail</option>
-        </select>
-
-        <!-- Producto de oferta -->
-        <label for="offer">Producto de oferta:</label>
-        <input id="offer" type="checkbox" formControlName="offer" />
-
-        <button type="submit" [disabled]="productoForm.invalid">Enviar</button>
-    </form>
-    <div class="form-labels">
-
-    </div>
-    <div class="form-inputs">
-
+<div class="container">
+    <div class="form-container">
+        <h2>{{ isEditMode ? 'Editar Producto' : 'NUEVO PRODUCTO' }}</h2>
+        <form [formGroup]="productoForm" (ngSubmit)="onSubmit()">
+            <!-- Nº de referencia -->
+            <label for="reference">Nº de referencia:</label>
+            <div class="input-container">
+                <input id="reference" formControlName="reference" />
+                @if (productoForm.controls['reference'].valid) {
+                    <span class="valid">✔️</span>
+                }
+            </div>
+            <div class="error-container">
+                @if (productoForm.controls['reference'].errors?.['required'] && productoForm.controls['reference'].touched) {
+                    <span class="error">
+                        El nº de referencia es un campo obligatorio
+                    </span>
+                }
+                @if (productoForm.controls['reference'].errors?.['maxlength']) {
+                    <span class="error">
+                        La referencia no puede exceder 10 caracteres
+                    </span>
+                }
+            </div>
+    
+            <!-- Nombre del producto -->
+            <label for="name">Nombre del producto:</label>
+            <div class="input-container">
+                <input id="name" formControlName="name" />
+                @if (productoForm.controls['name'].valid) {
+                    <span class="valid">✔️</span>
+                }
+            </div>
+            <div class="error-container">
+                @if (productoForm.controls['name'].errors?.['required'] && productoForm.controls['name'].touched) {
+                    <span class="error">
+                        El nombre es un campo obligatorio
+                    </span>
+                }
+                @if (productoForm.controls['name'].errors?.['minlength']) {
+                    <span class="error">
+                        El nombre debe tener al menos 3 caracteres
+                    </span>
+                }
+                @if (productoForm.controls['name'].errors?.['maxlength']) {
+                    <span class="error">
+                        El nombre no puede exceder 50 caracteres
+                    </span>
+                }
+                @if (productoForm.controls['name'].errors?.['duplicateName']) {
+                    <span class="error">
+                        Este nombre de producto ya existe
+                    </span>
+                }
+            </div>
+    
+            <!-- Precio -->
+            <label for="price">Precio:</label>
+            <div class="input-container">
+                <input id="price" formControlName="price" type="text" />
+                @if (productoForm.controls['price'].valid) {
+                    <span class="valid">✔️</span>
+                }
+            </div>
+            <div class="error-container">
+                @if (productoForm.controls['price'].errors?.['required'] && productoForm.controls['price'].touched) {
+                    <span class="error">
+                        El precio es un campo obligatorio
+                    </span>
+                }
+                @if (productoForm.controls['price'].errors?.['min']) {
+                    <span class="error">
+                        El precio debe ser mayor que 0
+                    </span>
+                }
+                @if (productoForm.controls['price'].errors?.['max']) {
+                    <span class="error">
+                        El precio no puede ser mayor que 9999.99
+                    </span>
+                }
+                @if (productoForm.controls['price'].errors?.['pattern']) {
+                    <span class="error">
+                        Ingrese un precio válido (ej: 199.99)
+                    </span>
+                }
+            </div>
+    
+            <!-- Descripción -->
+            <label for="description">Descripción:</label>
+            <div class="input-container">
+                <textarea id="description" formControlName="description"></textarea>
+                @if (productoForm.controls['description'].valid) {
+                    <span class="valid">✔️</span>
+                }
+            </div>
+            <div class="error-container">
+                @if (productoForm.controls['description'].errors?.['required'] && productoForm.controls['description'].touched) {
+                    <span class="error">
+                        La descripción es un campo obligatorio
+                    </span>
+                }
+                @if (productoForm.controls['description'].errors?.['minlength']) {
+                    <span class="error">
+                        La descripción debe tener al menos 10 caracteres
+                    </span>
+                }
+                @if (productoForm.controls['description'].errors?.['maxlength']) {
+                    <span class="error">
+                        La descripción no puede exceder 500 caracteres
+                    </span>
+                }
+            </div>
+    
+            <!-- Tipo de Producto -->
+            <label for="type">Tipo de Producto:</label>
+            <div class="input-container">
+                <select id="type" formControlName="type">
+                    <option value="road">Zapatillas de running de carretera</option>
+                    <option value="trail">Zapatillas de trail</option>
+                </select>
+            </div>
+            <div class="empty-error"></div>
+    
+            <!-- Producto de oferta -->
+            <label for="offer">Producto de oferta:</label>
+            <div class="input-container checkbox-container">
+                <input id="offer" type="checkbox" formControlName="offer" />
+            </div>
+            <div class="empty-error"></div>
+    
+            <div class="button-container">
+                <button type="submit" [disabled]="productoForm.invalid">
+                    {{ isEditMode ? 'Actualizar' : 'Enviar' }}
+                </button>
+            </div>
+        </form>
     </div>
 </div>

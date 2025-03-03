@@ -1,1 +1,25 @@
-<p>productos works!</p>
+<div class="productos-container">
+    @if (products.length === 0) {
+    <div class="no-products">
+        No hay productos disponibles. Añade productos usando el formulario.
+    </div>
+    }
+
+    <div class="productos-grid">
+        @for (product of products; track product.reference) {
+        <div class="producto-card">
+            <h3>{{ product.name }}</h3>
+            <p class="reference">Ref: {{ product.reference }}</p>
+            <p class="price">{{ product.price | currency:'EUR':'symbol':'1.2-2' }}</p>
+            <p class="description">{{ product.description }}</p>
+            <p class="type">
+                <strong>Tipo:</strong>
+                {{ product.type === 'road' ? 'Zapatillas de running de carretera' : 'Zapatillas de trail' }}
+            </p>
+            @if (product.offer) {
+            <p class="offer">¡En oferta!</p>
+            }
+        </div>
+        }
+    </div>
+</div>
