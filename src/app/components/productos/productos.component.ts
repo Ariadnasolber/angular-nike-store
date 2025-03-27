@@ -11,19 +11,19 @@ import { Subscription } from 'rxjs';
   templateUrl: './productos.component.html',
   styleUrls: ['./productos.component.css']
 })
-export class ProductosComponent implements OnInit, OnDestroy {
-  products: Product[] = [];
+export class ProductosComponent implements OnInit, OnDestroy { 
+  products: Product[] = []; 
   private subscription: Subscription = new Subscription();
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) { } //inyección del servicio ProductService
 
   ngOnInit(): void {
-    this.subscription = this.productService.getProducts().subscribe(products => {
-      this.products = products;
+    this.subscription = this.productService.getProducts().subscribe(products => { //suscripción al observable de productos
+      this.products = products; 
     });
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription.unsubscribe(); //desuscripción del observable al destruir el componente
   }
 }
